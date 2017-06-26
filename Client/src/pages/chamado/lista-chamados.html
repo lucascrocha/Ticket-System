@@ -1,0 +1,40 @@
+﻿<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <span *ngIf="chamadoArquivados">Chamados arquivados</span>
+      <span *ngIf="!chamadoArquivados">Enviar feedback</span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <strong>#</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Titulo</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Tipo</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Urgência</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Resolvido</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Situação</strong>
+      </ion-col>
+    </ion-row>
+    <ion-row tappable *ngFor="let chamado of chamados" (click)="abrirChamado(chamado)">
+      <ion-col>{{chamado.id}}</ion-col>
+      <ion-col>{{chamado.titulo}}</ion-col>
+      <ion-col>{{chamado.tipoDescricao}}</ion-col>
+      <ion-col>{{chamado.urgenciaDescricao}}</ion-col>
+      <ion-col><ion-checkbox [(ngModel)]="chamado.respondido" disabled="true"></ion-checkbox></ion-col>
+      <ion-col><ion-badge [color]="chamado.badgeCor">{{chamado.badgeDescricao}}</ion-badge></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

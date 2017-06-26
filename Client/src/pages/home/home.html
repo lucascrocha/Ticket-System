@@ -1,0 +1,56 @@
+﻿<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Pagina inicial</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid *ngIf="pessoaTipo == tipoPessoa.Cliente">
+    <ion-row>
+      <ion-col>
+        <ion-label text-center><button ion-button (click)="abrirNovoChamado()">Novo chamado</button></ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label text-center><button ion-button (click)="feedback()">Feedback</button></ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label text-center><button ion-button (click)="abrirChamadoArquivados()">Todos chamados</button></ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="pessoaTipo == tipoPessoa.Funcionario">
+    <ion-row>
+      <ion-col>
+        <strong>#</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Titulo</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Tipo</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Urgência</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Resolvido</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Situação</strong>
+      </ion-col>
+      <ion-col>
+        <strong>Data de criação</strong>
+      </ion-col>
+    </ion-row>
+    <ion-row tappable *ngFor="let chamado of chamados" (click)="responderChamado(chamado)">
+      <ion-col>{{chamado.id}}</ion-col>
+      <ion-col>{{chamado.titulo}}</ion-col>
+      <ion-col>{{chamado.tipoDescricao}}</ion-col>
+      <ion-col>{{chamado.urgenciaDescricao}}</ion-col>
+      <ion-col><ion-checkbox [(ngModel)]="chamado.respondido" disabled="true"></ion-checkbox></ion-col>
+      <ion-col><ion-badge [color]="chamado.badgeCor">{{chamado.badgeDescricao}}</ion-badge></ion-col>
+      <ion-col>{{chamado.dataChamadoAbertura | date: 'dd/MM/yyyy HH:mm'}}</ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-label  *ngIf="pessoaTipo == tipoPessoa.Funcionario" text-center><button ion-button (click)="relatorio()">visualizar relatórios</button></ion-label>
+</ion-content>

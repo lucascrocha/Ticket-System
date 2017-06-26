@@ -1,0 +1,53 @@
+﻿<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <span *ngIf="pessoaTipo == tipoPessoa.Funcionario">Responder chamado</span>
+      <span *ngIf="pessoaTipo == tipoPessoa.Cliente">Visualizar chamado</span>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="confirmar()" *ngIf="!!!chamadoId || pessoaTipo == tipoPessoa.Funcionario">Confirmar</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list *ngIf="chamado">
+    <ion-item>
+      <ion-label>Titulo</ion-label>
+      <ion-input [(ngModel)]="chamado.titulo" name="titulo" disabled></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="chamado.tipo" name="tipo" disabled>
+        <ion-option [value]="1">Dúvida</ion-option>
+        <ion-option [value]="2">Sugestão</ion-option>
+        <ion-option [value]="3">Reclamação</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Urgencia</ion-label>
+      <ion-select [(ngModel)]="chamado.urgencia" name="urgencia" disabled>
+        <ion-option [value]="1">Baixa</ion-option>
+        <ion-option [value]="2">Média</ion-option>
+        <ion-option [value]="3">Alta</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mensagem</ion-label>
+      <ion-textarea [(ngModel)]="chamado.mensagem" name="mensagem" disabled></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Resolvido</ion-label>
+      <ion-checkbox [(ngModel)]="chamado.respondido" name="respondido" [disabled]="pessoaTipo == tipoPessoa.Cliente" item-right></ion-checkbox>
+    </ion-item>
+    <ion-item *ngIf="chamado.respostaAtendente.length > 1 || pessoaTipo == tipoPessoa.Funcionario">
+      <ion-label *ngIf="pessoaTipo == tipoPessoa.Funcionario">Resposta</ion-label>
+      <ion-label *ngIf="pessoaTipo == tipoPessoa.Cliente">Resposta do atendente</ion-label>
+      <ion-textarea [(ngModel)]="chamado.respostaAtendente" name="respostaAtendente" [disabled]="pessoaTipo == tipoPessoa.Cliente || chamado.respostaCliente.length > 1"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="chamado.situacao == situacao.Atendendo || chamado.situacao == situacao.Concluido">
+      <ion-label *ngIf="pessoaTipo == tipoPessoa.Funcionario">Nova resposta</ion-label>
+      <ion-label *ngIf="pessoaTipo == tipoPessoa.Cliente">Resposta do atendente</ion-label>
+      <ion-textarea [(ngModel)]="chamado.respostaCliente" name="respostaCliente" [disabled]="pessoaTipo == tipoPessoa.Cliente"></ion-textarea>
+    </ion-item>
+  </ion-list>
+</ion-content>

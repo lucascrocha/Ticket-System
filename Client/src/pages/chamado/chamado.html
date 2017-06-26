@@ -1,0 +1,40 @@
+﻿<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Criar chamado</ion-title>
+    <ion-buttons end>
+      <button ion-button [disabled]="desabilitarBotao" (click)="confirmar()">Confirmar</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label><ion-icon name="pricetag"></ion-icon></ion-label>
+      <ion-input [(ngModel)]="chamado.titulo" name="titulo" type="text" maxlength="60" placeholder="Título" (input)="habilitarBotao()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="chamado.tipo" name="tipo">
+        <ion-option [value]="1">Dúvida</ion-option>
+        <ion-option [value]="2">Sugestão</ion-option>
+        <ion-option [value]="3">Reclamação</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Urgência</ion-label>
+      <ion-select [(ngModel)]="chamado.urgencia" name="urgencia">
+        <ion-option [value]="1">Baixa</ion-option>
+        <ion-option [value]="2">Média</ion-option>
+        <ion-option [value]="3">Alta</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label><ion-icon name="quote"></ion-icon></ion-label>
+      <ion-textarea [(ngModel)]="chamado.mensagem" name="mensagem" placeholder="Mensagem" (input)="habilitarBotao()"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="chamado.respostaAtendente.length > 1">
+      <ion-label>Resposta do atendente</ion-label>
+      <ion-textarea [(ngModel)]="chamado.respostaAtendente" name="respostaAtendente" (input)="habilitarBotao()"></ion-textarea>
+    </ion-item>
+  </ion-list>
+</ion-content>

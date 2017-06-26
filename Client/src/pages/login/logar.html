@@ -1,0 +1,27 @@
+﻿<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <span *ngIf="pessoaTipo == tipoPessoa.Funcionario">Entrar no sistema SDA</span>
+      <span *ngIf="pessoaTipo == tipoPessoa.Cliente">Entrar no sistema</span>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button full (click)="logar()" [disabled]="desabilitarBotao">Entrar</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label><ion-icon name="person"></ion-icon></ion-label>
+      <ion-input [(ngModel)]="login.usuario" name="usuario" (input)="habilitarBotao()" placeholder="Usuário"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><ion-icon name="keypad"></ion-icon></ion-label>
+      <ion-input [(ngModel)]="login.senha" name="senha" type="password" (input)="habilitarBotao()" placeholder="Senha"></ion-input>
+    </ion-item>
+    <ion-item item-center>
+      <ion-label *ngIf="pessoaTipo == tipoPessoa.Cliente" text-center><button ion-button (click)="novoUsuario()">Cadastrar novo cliente</button></ion-label>
+      <ion-label *ngIf="pessoaTipo == tipoPessoa.Funcionario" text-center><button ion-button (click)="novoUsuario()">Cadastrar novo funcionário</button></ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

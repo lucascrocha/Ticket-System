@@ -1,0 +1,35 @@
+﻿<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      <span *ngIf="pessoaTipo == tipoPessoa.Funcionario">Criar novo Funcionário</span>
+      <span *ngIf="pessoaTipo == tipoPessoa.Cliente">Criar novo Cliente</span>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="confirmar()" full [disabled]="desabilitarBotao">Confirmar</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label><ion-icon name="person"></ion-icon></ion-label>
+      <ion-input [(ngModel)]="pessoa.nome" name="nome" placeholder="Nome" type="text" (input)="habilitarBotao()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><ion-icon name="keypad"></ion-icon></ion-label>
+      <ion-input [(ngModel)]="pessoa.cpf" name="cpf" type="number" placeholder="CPF" (input)="habilitarBotao()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><ion-icon name="mail"></ion-icon></ion-label>
+      <ion-input [(ngModel)]="pessoa.email" name="email" type="email" placeholder="Email" (input)="habilitarBotao()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><ion-icon name="contact"></ion-icon></ion-label>
+      <ion-input [(ngModel)]="pessoa.usuario" name="usuario" type="text" placeholder="Usuário" (input)="habilitarBotao()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label><ion-icon name="key"></ion-icon></ion-label>
+      <ion-input [(ngModel)]="pessoa.senha" name="senha" type="password" placeholder="Senha" (input)="habilitarBotao()"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>

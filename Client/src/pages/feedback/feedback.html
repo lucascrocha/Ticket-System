@@ -1,0 +1,31 @@
+﻿<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Feedback</ion-title>
+    <ion-buttons end *ngIf="feedback">
+      <button ion-button (click)="confirmar()">Confirmar</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list *ngIf="feedback">
+    <ion-item>
+      <ion-label>Nota</ion-label>
+      <ion-select [(ngModel)]="feedback.nota" name="nota" [disabled]="feedback.id">
+        <ion-option [value]="1">Excelente</ion-option>
+        <ion-option [value]="2">Muito bom</ion-option>
+        <ion-option [value]="3">Bom</ion-option>
+        <ion-option [value]="4">Razoável</ion-option>
+        <ion-option [value]="5">Ruim</ion-option>
+        <ion-option [value]="6">Péssimo</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Resolvido</ion-label>
+      <ion-checkbox [(ngModel)]="feedback.resolvido" name="resolvido" item-right [disabled]="feedback.id"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mensagem</ion-label>
+      <ion-textarea [(ngModel)]="feedback.mensagem" name="mensagem" placeholder="Existe algo que possa ser melhorado no atendimento?" [disabled]="feedback.id"></ion-textarea>
+    </ion-item>
+  </ion-list>
+</ion-content>

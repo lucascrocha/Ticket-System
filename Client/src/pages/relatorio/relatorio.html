@@ -1,0 +1,50 @@
+﻿<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Relatorio</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-card *ngIf="relatorio">
+        <ion-card-header>
+          Relatório geral
+        </ion-card-header>
+        <ion-card-content>
+          <ion-label><strong>Quantidade de chamados: </strong>{{relatorio.quantidadeChamados}}</ion-label>
+          <ion-label><strong>Quantidade de chamados resolvidos: </strong>{{relatorio.quantidadeChamadosRespondidos}}</ion-label>
+          <ion-label><strong>Média de tempo de resposta: </strong>{{relatorio.mediaTempoResposta}}</ion-label>
+          <ion-label *ngIf="relatorio.maiorQuantidadeTipo.length > 2"><strong>Maior quantidade de tipo: </strong>{{relatorio.maiorQuantidadeTipo}}</ion-label>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+    <ion-row>
+      <ion-card *ngIf="relatorio">
+        <ion-card-header>
+          Tipos de chamado
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #barCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+    <ion-card *ngIf="relatorio">
+      <ion-card-header>
+        Urgência de chamado
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+    <ion-row>
+      <ion-card *ngIf="relatorio">
+        <ion-card-header>
+          Feedback
+        </ion-card-header>
+        <ion-card-content>
+          <canvas #lineCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>
